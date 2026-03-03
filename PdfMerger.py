@@ -20,6 +20,7 @@ def main():
         # 4. Retrieve files in current directory
         try:
             files = os.listdir(".")
+        # Error catcher if perms or a issue occurs so it doesnt crash
         except PermissionError:
             print("Error: Permission denied when accessing directory.")
             sys.exit(1)
@@ -57,7 +58,7 @@ def main():
             try:
                 merger.append(pdf)
                 print(f"Added: {pdf}")
-            except PdfReadError:
+            except Exception:
                 print(f"Warning: Skipping corrupted PDF file: {pdf}")
             except Exception as e:
                 print(f"Warning: Could not add {pdf}: {e}")
